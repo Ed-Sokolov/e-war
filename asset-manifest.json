@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/e-war/static/css/main.021ff158.css",
+    "main.js": "/e-war/static/js/main.f84fbddb.js",
+    "static/js/787.b11d3f3b.chunk.js": "/e-war/static/js/787.b11d3f3b.chunk.js",
+    "static/media/face.png": "/e-war/static/media/face.4fd9dd846dda4ddb7b7a.png",
+    "static/media/loader.gif": "/e-war/static/media/loader.d14cfd4c08baf94c5f1a.gif",
+    "static/media/fireworks.gif": "/e-war/static/media/fireworks.581e85a0e91a27467a63.gif",
+    "static/media/rotatedSledgehammer.svg": "/e-war/static/media/rotatedSledgehammer.9e1de5c233120ef6beb078b51cce24a7.svg",
+    "static/media/sledgehammer.svg": "/e-war/static/media/sledgehammer.1c0f8294273de1def529707cd400dd6f.svg",
+    "static/media/icon_all-clear.png": "/e-war/static/media/icon_all-clear.7e7327c24b297e8c50f7.png",
+    "index.html": "/e-war/index.html",
+    "main.021ff158.css.map": "/e-war/static/css/main.021ff158.css.map",
+    "main.f84fbddb.js.map": "/e-war/static/js/main.f84fbddb.js.map",
+    "787.b11d3f3b.chunk.js.map": "/e-war/static/js/787.b11d3f3b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.021ff158.css",
+    "static/js/main.f84fbddb.js"
+  ]
+}
