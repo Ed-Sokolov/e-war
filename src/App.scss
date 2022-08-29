@@ -1,0 +1,909 @@
+@mixin flex ($direction, $justify, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+.App {
+  color: #252525;
+  @include flex(column, space-between, center);
+  background-color: rgb(240, 240, 240);
+  min-height: 100vh;
+
+  .header {
+    width: 100vw;
+    min-height: 50px;
+    background-color: #252525;
+    color: #fff;
+    @include flex(initial, center, initial);
+    box-shadow: rgb(0, 87, 184) 0px 8px 24px;
+    animation: 5s header infinite;
+
+    @keyframes header {
+      0% {
+        box-shadow: rgb(0, 87, 184) 0px 8px 24px;
+      }
+      50% {
+        box-shadow: rgb(0, 87, 184) 0px 1px 2px;
+      }
+      100% {
+        box-shadow: rgb(0, 87, 184) 0px 8px 24px;
+      }
+    }
+
+    .header__content {
+      width: 70vw;
+      @include flex(row, space-between, center);
+      padding: 5px;
+      user-select: none;
+
+      .back {
+        width: 30px;
+        
+        img {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          transition: .25s;
+          margin-top: 3.5px;
+
+          &:hover {
+            transform: scale(1.1);
+            transition: .25s;
+          }
+        }
+      }
+
+      .title_page {
+        font-size: 26px;
+        text-align: center;
+      }
+
+      .flag img {
+        width: 35px;
+        margin-top: 3.5px;
+      }
+    }
+  }
+
+  .content {
+    width: 70vw;
+    min-height: 80vh;
+    position: relative;
+
+    .main_page {
+      color: #252525;
+      @include flex(column, center, center);
+
+      .title {
+        user-select: none;
+        text-align: center;
+        margin: 25px; 
+        font-size: 28px;
+      }
+
+      .navigation {
+        text-align: center;
+
+        .title {
+          margin: 0;
+          font-size: 24px;
+
+          .pointer {
+            @include flex(initial, center, initial);
+            height: 45px;
+            
+            img {
+              width: 35px;
+              height: 35px;
+              animation: 2s pointer infinite;
+
+              @keyframes pointer {
+                0% {
+                  margin-top: 0px;
+                }
+                50% {
+                  margin-top: 10px;
+                }
+                100% {
+                  margin-top: 0px;
+                }
+              }
+            }
+          } 
+        }
+
+        .list {
+          list-style-type: none;
+          padding: 5px;
+          margin: 0;
+          font-size: 22px;
+  
+          li:hover {
+            transform: scale(1.1);
+          }
+
+          a {
+            text-decoration: none;
+            color: black;
+
+            span {
+              font-size: 1.2em;
+              font-weight: 500;
+              opacity: 0;
+              transition: .5s;
+            }
+
+            &:hover span{
+              opacity: 1;
+              transition: .5s;
+            }
+          }
+        }
+      }
+
+      .description {
+        text-align: center;
+        margin: 25px 10px;
+        padding: 5px;
+      }
+    }
+
+    .map_page {
+      color: black;
+      width: 100%;
+      height: 100%;
+
+      .field_map {
+        position: relative;
+        margin: 25px 0;
+        @include flex(column, initial, center);
+
+        .prompt {
+          @include flex(column, initial, flex-start);
+
+          .item {
+            @include flex(row, initial, initial);
+            margin: 5px;
+
+            .item_color {
+              width: 25px;
+              height: 25px;
+              border-radius: 50%;
+              margin-right: 5px;
+            }
+          }
+
+          .item:first-child {
+            
+            .item_color {
+              background-color: green;
+              opacity:.5;
+            }
+          }
+          
+          .item:last-child {
+            
+            .item_color {
+              background-color: red;
+              opacity:.5;
+            }
+          }
+        }
+        
+        .map {
+          width: 70vw;
+          height: 70vh;
+
+          .tooltip {
+            
+            .title {
+              font-size: 20px;
+            }
+
+            .status_alert {
+              @include flex(initial, initial, center);
+
+              img {
+                width: 25px;
+                height: 25px;
+              }
+            }
+
+            .duration {
+              margin: 5px;
+              text-align: center;
+            }
+          }
+        }
+
+        .description {
+          text-align: center;
+          margin: 5px;
+        }
+      }
+    }
+
+    .statistics_page {
+      margin: 25px auto;
+      position: relative;
+      text-align: center;
+      padding: 15px;
+      border-radius: 10px;
+
+      .title {
+        margin: 10px;
+      }
+
+      .prompt_for_input_field {
+        user-select: none;
+      }
+
+      .input_field {
+        width: max-content;
+        margin: 0 auto;
+
+        .input_date {
+          background-color: white;
+          color: black;
+          @include flex(row, space-between, center);
+          padding: 5px 10px;
+          border-radius: 5px;
+          margin: 5px;
+
+          img {
+            margin-left: 35px;
+            width: 25px;
+            height: 25px;
+            user-select: none;
+          }
+        }
+      }
+
+      .list_statistic {
+        padding: 10px;
+        @include flex(row, center, initial);
+        flex-wrap: wrap;
+      }
+
+      .card_statistic {
+        margin: 10px;
+        padding: 10px;
+        min-width: 200px;
+        width: 300px;
+        @include flex(column, flex-start, center);
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+
+        .icon {
+          margin: 10px;
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          @include flex(initial, center, center);
+          user-select: none;
+        }
+
+        .value {
+          font-size: 36px;
+          margin: 10px;
+          color: red;
+        }
+
+        .title {
+          font-size: 20px;
+        }
+      }
+    }
+
+    .game_page {
+      padding: 10px;
+      @include flex(column, center, center);
+      user-select: none;
+
+      .message {
+        padding: 10px;
+        @include flex(column, center, center);
+        text-align: center;
+
+        .congratulations {
+          font-size: 24px;
+        }
+
+        .btn {
+          padding: 10px;
+
+          button {
+            padding: 15px 30px;
+            font-size: 16px;
+            border: none;
+            background-color: #252525;
+            color: #fff;
+            border-radius: 10px;
+            transition: .5s;
+            box-shadow: rgb(38, 57, 77) 0px 5px 7.5px -2.5px;
+
+            &:hover {
+              background-color: #383838;
+              transition: .5s;
+              box-shadow: rgb(38, 57, 77) 0px 0px 0px 0px;
+            }
+          }
+        }
+      }
+      
+      .game_field {
+        width: max-content;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        grid-gap: 20px;
+        justify-items: center;
+        background-color: rgb(50, 180, 46);
+        padding: 75px 50px 50px 50px;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        
+        .slot {
+          width: 200px;
+          height: 100px;
+          position: relative;
+
+          .first_part_circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            box-shadow: 0px 17px 0px 0px rgba(30, 110, 27, 0.774) inset;
+            @include flex(initial, center, initial);
+            overflow: hidden;
+          }
+          
+          .field {
+            position: absolute;
+            width: 100%;
+            height: 200%;
+            top: auto;
+            bottom: 0;
+            overflow: hidden;
+            border-radius: 50%/25%;
+            @include flex(initial, center, initial);
+
+            .fireworks {
+              width: 100%;
+              height: 100%;
+            }
+
+            .person {
+              width: 80%;
+              position: absolute;
+              top: auto;
+              bottom: -105%;
+              border-radius: 40%;
+              z-index: 10;
+              animation: appearance .5s 2;
+            }
+
+            @keyframes appearance {
+              0% {
+                bottom: -120%;
+              }
+              50% {
+                bottom: -20%;
+              }
+              100% {
+                bottom: -120%;
+              }
+            }
+          }
+
+          .second_part_circle {
+            width: 100%;
+            height: 100%;
+            background-color: #1f190b;
+            border-radius: 50%;
+            box-shadow: 0px 15px 0px 5px #302711 inset;
+          }
+        }
+
+        .slot_1, .slot_2, .slot_3 {
+          width: 160px;
+          height: 80px;
+          margin-top: 10px;
+        } 
+        
+        .slot_4, .slot_5, .slot_6 {
+          width: 180px;
+          height: 90px;
+        }
+        
+        .slot_1 {
+          margin-left: 80px;
+        }
+        
+        .slot_3 {
+          margin-left: -80px;
+        }
+        
+        .slot_4 {
+          margin-left: 40px;
+        }
+        
+        .slot_6 {
+          margin-left: -40px;
+        }
+        
+        .slot_7 {
+          margin-left: -20px;
+        }
+        
+        .slot_9 {
+          margin-left: 20px;
+        }
+      }
+    }
+  }
+
+  .footer {
+    width: 100%;
+    min-height: 55px;
+    background-color: #252525;
+    color: #fff;
+    @include flex(initial, center, initial);
+    box-shadow: rgb(255, 215, 0) 0px -8px 24px;
+    animation: 5s footer infinite;
+
+    @keyframes footer {
+      0% {
+        box-shadow: rgb(255, 215, 0) 0px -8px 24px;
+      }
+      50% {
+        box-shadow: rgb(255, 215, 0) 0px -1px 2px;
+      }
+      100% {
+        box-shadow: rgb(255, 215, 0) 0px -8px 24px;
+      }
+    }
+
+    .footer__content {
+      width: 70vw;
+      padding: 5px;
+      text-align: center;
+      @include flex(column, center, center);
+    }
+  }
+}
+
+@media (max-width: 1250px) {
+  .App {
+    .header {
+      .header__content {
+        width: 80vw;
+      }
+    }
+    
+    .content {
+      width: 80vw;
+      
+      .map_page {
+        .field_map {
+          margin: 20px 0;
+          
+          .map {
+            width: 80vw;
+          }
+        }
+      }
+    }
+    
+    .footer {
+      .footer__content {
+        width: 80vw;
+      }
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .App {
+    .header {
+      .header__content {
+        width: 90vw;
+      }
+    }
+    
+    .content {
+      width: 90vw;
+      
+      .map_page {
+        .field_map {
+          margin: 15px 0;
+          
+          .map {
+            width: 90vw;
+          }
+        }
+      }
+    }
+    
+    .footer {
+      .footer__content {
+        width: 90vw;
+      }
+    }
+  }
+}
+
+@media (max-width: 950px) {
+  .App {
+    .header {
+      .header__content {
+        width: 95vw;
+      }
+    }
+    
+    .content {
+      width: 95vw;
+      
+      .map_page {
+        .field_map {
+          margin: 10px 0;
+          
+          .map {
+            width: 95vw;
+          }
+        }
+      }
+      
+      .game_page {
+        .game_field {
+          .slot {
+            width: 175px;
+            height: 75px;
+
+            .person {
+              width: 70%;
+              animation: appearance .5s 2;
+            }
+            
+            @keyframes appearance {
+              0% {
+                bottom: -140%;
+              }
+              50% {
+                bottom: -40%;
+              }
+              100% {
+                bottom: -140%;
+              }
+            }
+          }
+          
+          .slot_1, .slot_2, .slot_3 {
+            width: 135px;
+            height: 55px;
+          } 
+          
+          .slot_4, .slot_5, .slot_6 {
+            width: 155px;
+            height: 65px;
+          }
+        }
+      }
+    }
+    
+    .footer {
+      .footer__content {
+        width: 95vw;
+      }
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .App {
+    .header {
+      .header__content {
+        width: 100vw;
+      }
+    }
+    .content {
+      width: 100vw;
+      .map_page {
+        .field_map {
+          margin: 0;
+          .map {
+            width: 100vw;
+          }
+        }
+      }
+    }
+    .footer {
+      .footer__content {
+        width: 100vw;
+      }
+    }
+  }
+}
+
+@media (max-width: 850px) {
+  .App {
+    .header {
+      box-shadow: rgb(0, 87, 184) 0px 4px 12px;
+      
+      @keyframes header {
+        0% {
+          box-shadow: rgb(0, 87, 184) 0px 4px 12px;
+        }
+        50% {
+          box-shadow: rgb(0, 87, 184) 0px 1px 2px;
+        }
+        100% {
+          box-shadow: rgb(0, 87, 184) 0px 4px 12px;
+        }
+      }
+    }
+    
+    .content {
+      .map_page {
+        .field_map {
+          .map {
+            height: 60vh;
+          }
+        }
+      }
+    }
+    
+    .footer {
+      box-shadow: rgb(255, 215, 0) 0px -4px 12px;
+
+      @keyframes footer {
+        0% {
+          box-shadow: rgb(255, 215, 0) 0px -4px 12px;
+        }
+        50% {
+          box-shadow: rgb(255, 215, 0) 0px -1px 2px;
+        }
+        100% {
+          box-shadow: rgb(255, 215, 0) 0px -4px 12px;
+        }
+      }
+      .footer__content {
+        font-size: .9em;
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .App {
+    .content {
+      .game_page {
+        padding: 5px;
+        
+        .game_field {
+          grid-gap: 5px;
+          padding: 40px 15px 15px 15px;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 700px) {
+  .App {
+    .content {
+      .game_page {
+        padding: 0px;
+        
+        .game_field {
+          grid-gap: 1px;
+          padding: 20px 5px 5px 5px;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 675px) {
+  .App {
+    .content {
+      .game_page {
+        .game_field {
+          .slot {
+            width: 90px;
+            height: 60px;
+            margin: 2px;
+            
+            .person {
+              width: 70%;
+              animation: appearance .5s 2;
+            }
+            
+            @keyframes appearance {
+              0% {
+                bottom: -100%;
+              }
+              50% {
+                bottom: -15%;
+              }
+              100% {
+                bottom: -100%;
+              }
+            }
+            
+            .first_part_circle {
+              box-shadow: 0px 8px 0px 0px rgba(30, 110, 27, 0.774) inset;
+            }
+            
+            .second_part_circle {
+              box-shadow: 0px 8.5px 0px 2.5px #302711 inset;
+            }
+          }
+          
+          .slot_1, .slot_2, .slot_3 {
+            width: 70px;
+            height: 40px;
+          } 
+          
+          .slot_4, .slot_5, .slot_6 {
+            margin-top: -2.5px;
+            width: 80px;
+            height: 50px;
+          }
+          
+          .slot_1 {
+            margin-left: 25px;
+          }
+          
+          .slot_3 {
+            margin-left: -25px;
+          }
+          
+          .slot_4 {
+            margin-left: 10px;
+          }
+          
+          .slot_6 {
+            margin-left: -10px;
+          }
+          
+          .slot_7 {
+            margin-left: 0px;
+          }
+          
+          .slot_9 {
+            margin-left: 0px;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 375px) {
+  .App {
+    .content {
+      .game_page {
+        .game_field {
+          .slot {
+            width: 75px;
+            height: 45px;
+            margin: 1px;
+            
+            .first_part_circle {
+              box-shadow: 0px 7.5px 0px 0px rgba(30, 110, 27, 0.774) inset;
+            }
+            
+            .second_part_circle {
+              box-shadow: 0px 8px 0px 2.5px #302711 inset;
+            }
+          }
+          
+          .slot_1, .slot_2, .slot_3 {
+            width: 75px;
+            height: 45px;
+          } 
+          
+          .slot_4, .slot_5, .slot_6 {
+            width: 75px;
+            height: 45px;
+          }
+          
+          .slot_1 {
+            margin-left: 0px;
+          }
+          
+          .slot_3 {
+            margin-left: 0px;
+          }
+          .slot_4 {
+            margin-left: 0px;
+          }
+          
+          .slot_6 {
+            margin-left: 0px;
+          }
+          
+          .slot_7 {
+            margin-left: 0px;
+          }
+          
+          .slot_9 {
+            margin-left: 0px;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 410px) {
+  .App {
+    .header {
+      box-shadow: rgb(0, 87, 184) 0px 2px 6px;
+      
+      @keyframes header {
+        0% {
+          box-shadow: rgb(0, 87, 184) 0px 2px 6px;
+        }
+        50% {
+          box-shadow: rgb(0, 87, 184) 0px 1px 2px;
+        }
+        100% {
+          box-shadow: rgb(0, 87, 184) 0px 2px 6px;
+        }
+      }
+    }
+    
+    .content {
+      width: 100vw;
+      
+      .map_page {
+        .field_map {
+          .map {
+            .tooltip {
+              .title {
+                font-size: 16px;
+              }
+              
+              .status_alert {
+                img {
+                  width: 20px;
+                  height: 20px;
+                }
+              }
+              
+              .duration {
+                margin: 2px;
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    .footer {
+      box-shadow: rgb(255, 215, 0) 0px -2px 6px;
+      
+      @keyframes footer {
+        0% {
+          box-shadow: rgb(255, 215, 0) 0px -2px 6px;
+        }
+        50% {
+          box-shadow: rgb(255, 215, 0) 0px -1px 2px;
+        }
+        100% {
+          box-shadow: rgb(255, 215, 0) 0px -2px 6px;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 370px) {
+  .App {
+    .header {
+      .header__content {
+        .title_page {
+          font-size: 22px
+        }
+      }
+    }
+  }
+}
