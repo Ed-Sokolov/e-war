@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getStatutes } from '../../redux/StatusesReducer';
 import { useEffect, useState } from "react";
 import L from 'leaflet';
+import { Error } from "../error/Error";
 
 const center = [49.12029563346219, 32.35630349960624];
 
@@ -28,13 +29,16 @@ const MapContainer = (props) => {
 
     return (
         <div>
-            <MapPage citiesStatus={props.citiesStatus} center={center} bounds={bounds} />
+            {
+                props.isError ? <Error/> : <MapPage citiesStatus={props.citiesStatus} center={center} bounds={bounds} />
+            }
         </div>
     )
 }
 
 let mapStateToProps = (state) => ({
-    citiesStatus: state.statusesPage.citiesStatus
+    citiesStatus: state.statusesPage.citiesStatus,
+    isError: state.statusesPage.isError
 })
 
 export default connect(mapStateToProps, { getStatutes })(MapContainer);

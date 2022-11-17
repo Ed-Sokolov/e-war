@@ -1,6 +1,7 @@
 import { statusesAPI } from "../api/map/api";
 
 const SET_STATUSES = 'SET_STATUSES';
+const SET_ERROR = 'SET_ERROR';
 
 let initialState = {
     citiesStatus: [
@@ -258,6 +259,7 @@ let initialState = {
             "shapeType": "ADM1"
         }
     ],
+    isError: false
 }
 
 const statusesReducer = (state = initialState, action) => {
@@ -272,12 +274,17 @@ const statusesReducer = (state = initialState, action) => {
                 let index = item[0].id - 1;
                 status.alert = action.citiesStatus[index].alert;
                 status.name = action.citiesStatus[index].name;
-                status.changed = action.citiesStatus[index].changed;
+                status.changed = action.citiesStatus[index].changed ? action.citiesStatus[index].changed : "Without data";
                 return status;
             })
             return {
                 ...state,
                 citiesStatus: newCitiesStatus
+            }
+        case SET_ERROR:
+            return {
+                ...state,
+                isError: action.isError
             }
         default:
             return state;
@@ -289,9 +296,19 @@ const setStatuses = (statuses) => ({
     citiesStatus: statuses
 })
 
+const setError = (isError) => ({
+    type: SET_ERROR,
+    isError
+})
+
 export const getStatutes = () => async (dispatch) => {
-    let response = await statusesAPI.getStatutes();
-    dispatch(setStatuses(response.states));
+    try {
+        let response = await statusesAPI.getStatutes();
+        dispatch(setStatuses(response.states));
+        dispatch(setError(false));
+    } catch {
+        dispatch(setError(true));
+    }
 }
 
 export default statusesReducer;
