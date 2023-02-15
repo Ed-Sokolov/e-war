@@ -5,21 +5,12 @@ import 'leaflet/dist/leaflet.css';
 import '../../App.scss';
 import icon_alert from '../../images/icon_alert.png';
 import icon_all_clear from '../../images/icon_all-clear.png';
-import { useMediaQuery } from 'react-responsive';
 
 const MapPage = (props) => {
-    const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 1251px)' });
-    const isSmallWidth = useMediaQuery({ query: '(max-width: 850px)' });
-    const isEvenWidth = useMediaQuery({ query: '(max-width: 410px)' });
-    const isPortrait = useMediaQuery({ query: '(orientation: portrait)' })
-    const isSmallHeight = useMediaQuery({ query: '(max-height: 395px)' });
-
-    let zoom = isDesktopOrLaptop ? 6 : (isPortrait ? (isEvenWidth? 4.4 : isSmallWidth ? 5 : 6) : isSmallHeight ? 4.4 : 5);
-
     return (
         <div className="map_page">
             <div className="field_map">
-                <MapContainer className="map" center={props.center} zoom={zoom} maxZoom={8} minZoom={zoom} maxBounds={props.bounds}>
+                <MapContainer className="map" center={props.center} zoom={props.zoom} maxZoom={8} minZoom={props.zoom} maxBounds={props.bounds}>
                     <TileLayer
                         url="https://api.maptiler.com/maps/voyager/256/{z}/{x}/{y}.png?key=Pb0egcwjDrYMdpI7GZIM"
                         attribution='<a href="https://carto.com/" target="_blank">&copy; CARTO</a> <a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
@@ -31,8 +22,14 @@ const MapPage = (props) => {
                             if (state.properties.id === props.citiesStatus[stateId].id && props.citiesStatus[stateId].alert === true) {
                                 color = "red";
                             }
-                            let date = new Date(props.citiesStatus[stateId].changed);
-                            let time = `${date.getDate() < 10 ? '0' + date.getDate() : date.getDate()}-${date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1}-${date.getFullYear()}, ${date.getHours() < 10 ? '0' + date.getHours() : date.getHours()}:${date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()}:${date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()}`;
+                            let time;
+                            if (props.citiesStatus[stateId].changed === 'Without data') {
+                                time = 'Данних нема.';
+                            } else {
+                                let date = new Date(props.citiesStatus[stateId].changed);
+                                time = `${date.getDate() < 10 ? '0' + date.getDate() : date.getDate()}-${date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1}-${date.getFullYear()}, ${date.getHours() < 10 ? '0' + date.getHours() : date.getHours()}:${date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()}:${date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()}`;
+                            }
+                            
                             return (
                                 <Polygon pathOptions={{
                                     fillColor: color,
