@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/e-war/static/css/main.81d382c0.css",
-    "main.js": "/e-war/static/js/main.5f9ae3c1.js",
+    "main.js": "/e-war/static/js/main.230a87fa.js",
     "static/js/787.b11d3f3b.chunk.js": "/e-war/static/js/787.b11d3f3b.chunk.js",
     "static/media/face.png": "/e-war/static/media/face.4fd9dd846dda4ddb7b7a.png",
     "static/media/loader.gif": "/e-war/static/media/loader.d14cfd4c08baf94c5f1a.gif",
@@ -11,11 +11,11 @@
     "static/media/icon_all-clear.png": "/e-war/static/media/icon_all-clear.7e7327c24b297e8c50f7.png",
     "index.html": "/e-war/index.html",
     "main.81d382c0.css.map": "/e-war/static/css/main.81d382c0.css.map",
-    "main.5f9ae3c1.js.map": "/e-war/static/js/main.5f9ae3c1.js.map",
+    "main.230a87fa.js.map": "/e-war/static/js/main.230a87fa.js.map",
     "787.b11d3f3b.chunk.js.map": "/e-war/static/js/787.b11d3f3b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.81d382c0.css",
-    "static/js/main.5f9ae3c1.js"
+    "static/js/main.230a87fa.js"
   ]
 }
