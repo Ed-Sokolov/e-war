@@ -11,6 +11,8 @@
   background-color: rgb(240, 240, 240);
   min-height: 100vh;
 
+  overflow-x: clip;
+
   .header {
     width: 100vw;
     min-height: 50px;
